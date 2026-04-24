@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartas Que Flotan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="petal-canvas" aria-hidden="true"></canvas>
+
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero__veil"></div>
+      <div class="hero__content glass-panel">
+        <p class="hero__eyebrow">Para una historia que merece escena propia</p>
+        <h1 class="hero__title">
+          <span class="hero__line">Hay cartas que no se leen.</span>
+          <span class="hero__line">Se sienten despacio,</span>
+          <span class="hero__line">como petalos cayendo.</span>
+        </h1>
+        <p class="hero__lede">
+          Un rincon intimo donde cada sobre guarda un instante, una promesa y un ritmo pensado
+          para que el corazon llegue antes que la vista.
+        </p>
+        <div class="hero__actions">
+          <button class="pill-button" type="button" data-scroll-target="#letters">Abrir la primera carta</button>
+          <button class="audio-toggle" id="audio-toggle" type="button" aria-pressed="false">Activar ambiente</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="letters-section" id="letters">
+        <div class="section-copy">
+          <p class="section-copy__eyebrow">Cartas de amor dinamicas</p>
+          <h2>Un jardin de sobres que se abren solo cuando decides acercarte</h2>
+          <p>
+            Cada carta entra en escena con su propio tempo: el sobre se eleva, la solapa se abre,
+            y las palabras aparecen una a una para marcar el pulso de la lectura.
+          </p>
+        </div>
+
+        <div class="letters-grid">
+          <button class="envelope-card glass-panel" type="button" data-letter="dawn">
+            <span class="envelope-card__shine"></span>
+            <span class="envelope-card__flap"></span>
+            <span class="envelope-card__paper"></span>
+            <span class="envelope-card__label">Carta I</span>
+            <span class="envelope-card__title">Cuando todo estaba empezando</span>
+            <span class="envelope-card__hint">Tocame para abrir</span>
+          </button>
+
+          <button class="envelope-card glass-panel" type="button" data-letter="orbit">
+            <span class="envelope-card__shine"></span>
+            <span class="envelope-card__flap"></span>
+            <span class="envelope-card__paper"></span>
+            <span class="envelope-card__label">Carta II</span>
+            <span class="envelope-card__title">Todo lo que gira alrededor de ti</span>
+            <span class="envelope-card__hint">Hay una pausa guardada aqui</span>
+          </button>
+
+          <button class="envelope-card glass-panel" type="button" data-letter="future">
+            <span class="envelope-card__shine"></span>
+            <span class="envelope-card__flap"></span>
+            <span class="envelope-card__paper"></span>
+            <span class="envelope-card__label">Carta III</span>
+            <span class="envelope-card__title">La vida que imagino contigo</span>
+            <span class="envelope-card__hint">Abre este sobre sin prisa</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <aside class="letter-overlay" id="letter-overlay" hidden>
+    <button class="letter-overlay__backdrop" type="button" aria-label="Cerrar carta"></button>
+    <div class="letter-stage">
+      <button class="letter-close" type="button" aria-label="Cerrar">Cerrar</button>
+      <div class="letter-envelope glass-panel" id="letter-envelope">
+        <div class="letter-envelope__flap"></div>
+        <article class="letter-sheet">
+          <p class="letter-sheet__eyebrow" id="letter-eyebrow"></p>
+          <h3 class="letter-sheet__title" id="letter-title"></h3>
+          <div class="letter-sheet__body" id="letter-body"></div>
+        </article>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    window.letterCollection = {
+      dawn: {
+        eyebrow: "Carta I",
+        title: "Cuando todo estaba empezando",
+        paragraphs: [
+          "Todavia puedo volver al instante en que todo se sintio distinto. No fue un trueno ni una escena grandiosa. Fue algo mas dificil de olvidar: la calma exacta de saber que queria quedarme un poco mas cerca de ti.",
+          "Desde entonces, los dias tienen pequenas marcas tuyas. Una cancion, una calle, una hora del atardecer. Todo encontro una forma secreta de recordarme que hay personas capaces de cambiar la temperatura del mundo sin hacer ruido.",
+          "Si alguna vez dudas de lo importante que eres para mi, vuelve aqui. Esta carta existe para decirte que desde el principio hubo algo en ti que hizo hogar en mi pecho."
+        ]
+      },
+      orbit: {
+        eyebrow: "Carta II",
+        title: "Todo lo que gira alrededor de ti",
+        paragraphs: [
+          "Me gusta pensar que el amor verdadero no empuja: atrae. Tiene gravedad. Por eso todo en mi termina encontrando el camino hacia ti, incluso cuando el dia viene torcido o cuando las palabras tardan mas de lo normal en aparecer.",
+          "Hay una ternura muy tuya en mi rutina. Vive en los detalles pequenos, en lo que dices sin darte cuenta, en esa forma tuya de volver amable incluso lo cansado. Estar contigo no siempre necesita fuegos artificiales. A veces basta con respirar mas lento.",
+          "Y si algun dia el mundo nos pide correr, quiero seguir eligiendo este ritmo: el de mirarte con tiempo, escucharte bien y volver a ti como vuelven los planetas a su orbita."
+        ]
+      },
+      future: {
+        eyebrow: "Carta III",
+        title: "La vida que imagino contigo",
+        paragraphs: [
+          "No sueno solo con momentos perfectos. Sueno con una vida real, nuestra, llena de pequenas ceremonias: cafe compartido, ventanas abiertas, planes improvisados y silencios comodos que no necesiten explicacion.",
+          "Te pienso en los dias buenos, claro. Pero tambien en los normales y en los dificiles, porque ahi es donde mas se nota lo verdadero. Quiero ser refugio, complicidad y una presencia que te recuerde que no tienes que cargar sola con nada.",
+          "Si el futuro llega con preguntas, me gustaria responder muchas de ellas contigo. Paso a paso, carta a carta, petalo a petalo. Porque incluso cuando imagino el manana, mi lugar favorito sigue siendo el camino que conduce a ti."
+        ]
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="particles.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>
